@@ -1,8 +1,10 @@
 package Eventos;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 public class AgendaEventos {
@@ -23,11 +25,20 @@ public class AgendaEventos {
         System.out.println(eventosTreeMap);
     }
 
-    public static void main(String[] args) {
-        AgendaEventos eventoMap = new AgendaEventos();
-
-
+    public void eventoProximo(){
+        LocalDate dataAtual = LocalDate.now();
+        Map<LocalDate, Evento> eventosTreeMap = new TreeMap<>(eventoMap);
+        for (Map.Entry<LocalDate, Evento> entry :  eventoMap.entrySet()){
+            if (entry.getKey().isEqual(dataAtual) || entry.getKey().isAfter(dataAtual)){
+                System.out.println("O proximo evento: " + entry.getValue() + "acontecera na data: " + entry.getKey());
+                break;
+            }
+        }
     }
 
+    //teste simples
+    public static void main(String[] args) {
+        AgendaEventos eventoMap = new AgendaEventos();
+    }
 
 }
